@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../db");
 
 db.query(`CREATE TABLE IF NOT EXISTS research_Papers (
     paper_id INT NOT NULL AUTO_INCREMENT,
