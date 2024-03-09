@@ -35,6 +35,23 @@ const queries = [
     FROM authors
     GROUP BY authors.university;
     `
+    `
+    SELECT authors.gender, research_Papers.paper_id, research_Papers.paper_title, COUNT(DISTINCT authorResearch.author_id) AS num_authors
+    FROM research_Papers
+    LEFT JOIN authorResearch ON research_Papers.paper_id = authorResearch.research_id
+    JOIN authors ON authors.author_id = authorResearch.author_id
+    WHERE authors.gender = 'F'
+    GROUP BY authors.gender, research_Papers.paper_id, research_Papers.paper_title;
+    `,
+
+    `
+    SELECT authors.university, research_Papers.paper_id, research_Papers.paper_title, COUNT(DISTINCT authorResearch.author_id) AS num_authors
+    FROM research_Papers
+    LEFT JOIN authorResearch ON research_Papers.paper_id = authorResearch.research_id
+    JOIN authors ON authors.author_id = authorResearch.author_id
+    WHERE authors.university IS NOT NULL
+    GROUP BY authors.university, research_Papers.paper_id, research_Papers.paper_title;
+    `,
 ];
 
 
